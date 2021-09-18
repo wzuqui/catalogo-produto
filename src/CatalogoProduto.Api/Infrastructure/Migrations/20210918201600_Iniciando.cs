@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CatalogoProduto.Api.Infrastructure.Migrations
 {
+    [ExcludeFromCodeCoverage]
     public partial class Iniciando : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

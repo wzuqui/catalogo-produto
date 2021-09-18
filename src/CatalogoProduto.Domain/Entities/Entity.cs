@@ -1,4 +1,4 @@
-﻿namespace ProdutoSolution.Domain.Entities
+﻿namespace CatalogoProduto.Domain.Entities
 {
-    public record Entity<TKey>(TKey Id) where TKey : struct;
+    public abstract record Entity<TKey>(TKey Id);
 }

@@ -1,19 +1,23 @@
 ﻿using System.Threading.Tasks;
-using ProdutoSolution.Domain.Repositories;
+using CatalogoProduto.Domain.Entities;
+using CatalogoProduto.Domain.Repositories;
 
-namespace ProdutoSolution.Domain.Services
+namespace CatalogoProduto.Domain.Services
 {
-    public class ProdutoService
+    public class ProdutoService : IProdutoService
     {
         private readonly IProdutoRepository _repository;
+
         public ProdutoService(IProdutoRepository pRepository)
         {
             _repository = pRepository;
         }
 
-        public async Task AdicionarAsync(Entities.Produto pItem)
+        public async Task<Produto> AdicionarAsync(Produto pItem)
         {
-            throw new System.NotImplementedException();
+            await _repository.AdicionarAsync(pItem);
+            await _repository.SalvarAsync();
+            return pItem;
         }
     }
 }

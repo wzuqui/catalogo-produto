@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CatalogoProduto.Infra.Repositories
 {
-    public abstract class RepositoryCrud<TKey, TEntity>
+    public abstract class Repository<TKey, TEntity>
         : IRepository<TKey, TEntity>
         where TKey : struct
         where TEntity : Entity<TKey>
@@ -17,7 +17,7 @@ namespace CatalogoProduto.Infra.Repositories
         private readonly DbSet<TEntity> _dbSet;
         private readonly IQueryable<TEntity> _queryableReadOnly;
 
-        protected RepositoryCrud(CatalogoProdutoContext pContext)
+        protected Repository(CatalogoProdutoContext pContext)
         {
             _context = pContext;
             _dbSet = pContext.Set<TEntity>();

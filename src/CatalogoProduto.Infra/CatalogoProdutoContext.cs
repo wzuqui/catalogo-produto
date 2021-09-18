@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Linq;
+using CatalogoProduto.Domain.Entities;
 using CatalogoProduto.Infra.EntityTypeConfigurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace CatalogoProduto.Infra
 {
-    public class CatalagoProdutoContext
+    public class CatalogoProdutoContext
         : DbContext
     {
-        public CatalagoProdutoContext(DbContextOptions<CatalagoProdutoContext> pOptions)
+        public CatalogoProdutoContext(DbContextOptions<CatalogoProdutoContext> pOptions)
             : base(pOptions)
         {
         }
+
+        public DbSet<Produto> Produtos { get; set; }
 
         public void Detach<TEntity>(Func<TEntity, bool> pPredicate) where TEntity : class
         {

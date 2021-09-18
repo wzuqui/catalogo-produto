@@ -1,3 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
+using CatalogoProduto.Api.Extensions;
+using CatalogoProduto.Api.IoC;
+using CatalogoProduto.Infra;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -5,40 +9,41 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-namespace ProdutoSolution.Api
+namespace CatalogoProduto.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration pConfiguration)
         {
-            Configuration = configuration;
+            Configuration = pConfiguration;
         }
 
-        public IConfiguration Configuration { get; }
+        [ExcludeFromCodeCoverage] private IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app
-            , IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder pApp
+            , IWebHostEnvironment pEnv)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Produto.Api v1"));
-            }
+            if (pEnv.IsDevelopment())
+                pApp.UseDeveloperExceptionPage();
 
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            pApp.UseSwagger();
+            pApp.UseSwaggerUI(p => p.SwaggerEndpoint("/swagger/v1/swagger.json", "Produto.Api v1"));
+            pApp.UseRouting();
+            pApp.UseEndpoints(p => p.MapControllers());
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection pServices)
         {
-            services.AddControllers();
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Produto.Api", Version = "v1" }); });
+            AdicionarDbContext(pServices);
+            pServices.AdicionarServicos();
+            pServices.AddControllers();
+            pServices.AddSwaggerGen(p => p.SwaggerDoc("v1", new OpenApiInfo { Title = "CatalogoProduto.Api", Version = "v1" }));
+        }
+
+        [ExcludeFromCodeCoverage]
+        protected virtual void AdicionarDbContext(IServiceCollection pServices)
+        {
+            pServices.AddDbContext<CatalogoProdutoContext>(p => p.UsarSqlServer(Configuration));
         }
     }
 }

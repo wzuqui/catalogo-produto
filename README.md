@@ -1,34 +1,35 @@
-# Welcome to Catálogo produto 👋
+# Bem-vindo ao Catálogo Produto 👋
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
 [![Documentation](https://img.shields.io/badge/documentation-yes-brightgreen.svg)](https://api.produto.willianluiszuqui.io/swagger)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> API CRUD com bando de dados em memória, para gerenciar um catálogo de produto
+> API CRUD para gerenciar um catálogo de produto
 
 ### 🏠 [Homepage](https://api.produto.willianluiszuqui.io)
 
 ### ✨ [Demo](https://api.produto.willianluiszuqui.io/swagger)
 
-## Install
+## Instalar
 
 ```sh
+dotnet tool restore
 yarn install
 ```
 
-## Usage
+## Uso
 
 ```sh
-dotnet run
+dotnet run -p .\src\CatalogoProduto.Api\
 ```
 
-## Run tests
+## Executar testes
 
 ```sh
 dotnet test
 ```
 
-## Author
+## Autor
 
 👤 **Willian Luis Zuqui <willianluiszuqui@gmail.com>**
 
@@ -36,15 +37,15 @@ dotnet test
 - Github: [@wzuqui](https://github.com/wzuqui)
 - LinkedIn: [@https:\/\/www.linkedin.com\/in\/willian-zuqui-470830192\/](https://linkedin.com/in/https://www.linkedin.com/in/willian-zuqui-470830192/)
 
-## 🤝 Contributing
+## 🤝 Contribuindo
 
-Contributions, issues and feature requests are welcome!
+Contribuições, problemas e solicitações de recursos são bem-vindas!
 
-Feel free to check [issues page](https://dev.azure.com/willianluiszuqui/Produto/_backlogs/backlog).
+Sinta-se à vontade para verificar [página issues](https://dev.azure.com/willianluiszuqui/Produto/_backlogs/backlog).
 
-## Show your support
+## Mostre seu apoio
 
-Give a ⭐️ if this project helped you!
+Dê um ⭐️ se este projeto te ajudou!
 
 ---
 

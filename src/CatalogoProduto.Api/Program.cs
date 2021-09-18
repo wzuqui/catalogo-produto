@@ -1,19 +1,29 @@
+using System.Diagnostics.CodeAnalysis;
+using CatalogoProduto.Api.Extensions;
+using CatalogoProduto.Api.Infrastructure;
+using CatalogoProduto.Infra;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
-namespace ProdutoSolution.Api
+namespace CatalogoProduto.Api
 {
+    [ExcludeFromCodeCoverage]
     public class Program
     {
-        public static IHostBuilder CreateHostBuilder(string[] args)
+        public static void Main(string[] pArgs)
         {
-            return Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
-        }
-
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
+            WebHost.CreateDefaultBuilder(pArgs)
+                .UseStartup<Startup>()
+                .Build()
+                .MigrarDbContext<CatalogoProdutoContext>((pContext
+                    , pServices) =>
+                {
+                    var xLogger = pServices.GetService<ILogger<CatalogoProdutoContextSeed>>();
+                    new CatalogoProdutoContextSeed().SeedAsync(pContext, xLogger).Wait();
+                })
+                .Run();
         }
     }
 }

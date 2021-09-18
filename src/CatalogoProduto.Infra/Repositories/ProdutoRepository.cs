@@ -3,11 +3,11 @@ using CatalogoProduto.Domain.Repositories;
 
 namespace CatalogoProduto.Infra.Repositories
 {
-    public class ProdutoRepositoryCrud
-        : RepositoryCrud<int, Produto>
+    public class ProdutoRepository
+        : Repository<int, Produto>
             , IProdutoRepository
     {
-        public ProdutoRepositoryCrud(CatalogoProdutoContext pContext)
+        public ProdutoRepository(CatalogoProdutoContext pContext)
             : base(pContext)
         {
         }

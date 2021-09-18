@@ -1,7 +1,9 @@
-﻿namespace ProdutoSolution.Domain.Repositories
+﻿using CatalogoProduto.Domain.Entities;
+
+namespace CatalogoProduto.Domain.Repositories
 {
     public interface IProdutoRepository
-        : IRepository<int, Entities.Produto>
+        : IRepository<int, Produto>
     {
     }
 }
