@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  catalogo_produto_sqlserver:
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=yourStrong(!)Password
+    ports:
+      - "1433:1433"
+    image: mcr.microsoft.com/mssql/server:2019-CU12-ubuntu-20.04

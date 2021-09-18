@@ -1,0 +1,18 @@
+{
+  "name": "produto",
+  "version": "1.0.0",
+  "repository": "https://willianluiszuqui@dev.azure.com/willianluiszuqui/Produto/_git/Produto",
+  "author": "Willian Luis Zuqui <willianluiszuqui@gmail.com>",
+  "license": "MIT",
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "commitizen": "4.2.4",
+    "cz-conventional-changelog": "3.3.0",
+    "cz-emoji": "^1.3.1",
+    "init": "0.1.2"
+  }
+}
