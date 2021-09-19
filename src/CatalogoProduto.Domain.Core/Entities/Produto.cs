@@ -1,6 +1,5 @@
-﻿using CatalogoProduto.Domain.Core;
-
-namespace CatalogoProduto.Domain.Produto
+﻿
+namespace CatalogoProduto.Domain.Core.Entities
 {
     public record Produto(int Id
         , string Nome
@@ -10,6 +9,16 @@ namespace CatalogoProduto.Domain.Produto
 
         public Produto() : this(default, default, default)
         {
+        }
+
+        protected override void Validar()
+        {
+            if (string.IsNullOrEmpty(Nome))
+                AdicionarErro("Nome não pode ser vazio");
+            if (Nome.Length > NOME_TAMANHO_MAXIMO)
+                AdicionarErro($"Nome não deve conter mais que {NOME_TAMANHO_MAXIMO} caracteres");
+            if (Valor <= 0)
+                AdicionarErro("Valor deve ser maior que 0");
         }
     }
 }

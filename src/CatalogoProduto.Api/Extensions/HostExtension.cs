@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace CatalogoProduto.Api.Extensions
 {
     [ExcludeFromCodeCoverage]
-    public static class WebHostExtension
+    public static class HostExtension
     {
         public static IHost MigrarDbContext<TContext>(this IHost pHost
             , Action<TContext, IServiceProvider> pSeeder) where TContext : DbContext

@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using CatalogoProduto.Domain.Core.Entities;
 
-namespace CatalogoProduto.Domain.Core
+namespace CatalogoProduto.Domain.Core.Interfaces
 {
     public interface IRepository<in TKey, TEntity>
         where TKey : struct

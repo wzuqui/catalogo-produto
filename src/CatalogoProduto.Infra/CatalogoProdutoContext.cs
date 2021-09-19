@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using CatalogoProduto.Domain.Entities;
+using CatalogoProduto.Domain.Core.Entities;
 using CatalogoProduto.Infra.EntityTypeConfigurations;
 using Microsoft.EntityFrameworkCore;
 

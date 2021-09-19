@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using CatalogoProduto.Domain.Entities;
-using CatalogoProduto.Domain.Repositories;
+using CatalogoProduto.Domain.Core.Entities;
+using CatalogoProduto.Domain.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CatalogoProduto.Infra.Repositories

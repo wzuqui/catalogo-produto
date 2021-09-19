@@ -1,7 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using CatalogoProduto.Api.Extensions;
+using CatalogoProduto.Api.Filters;
 using CatalogoProduto.Api.IoC;
+using CatalogoProduto.Api.Produtos;
 using CatalogoProduto.Infra;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -35,9 +39,13 @@ namespace CatalogoProduto.Api
         public void ConfigureServices(IServiceCollection pServices)
         {
             AdicionarDbContext(pServices);
-            pServices.AdicionarServicos();
-            pServices.AddControllers();
-            pServices.AddSwaggerGen(p => p.SwaggerDoc("v1", new OpenApiInfo { Title = "CatalogoProduto.Api", Version = "v1" }));
+
+            pServices
+                .AddSwaggerGen(p => p.SwaggerDoc("v1", new OpenApiInfo { Title = "CatalogoProduto.Api", Version = "v1" }))
+                .AdicionarIoC()
+                .AddControllers(p => p.Filters.AddService<ModelStateFilter>())
+                .AddFluentValidation(p => p.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()))
+                ;
         }
 
         [ExcludeFromCodeCoverage]

@@ -1,5 +1,5 @@
-﻿using CatalogoProduto.Domain.Entities;
-using CatalogoProduto.Domain.Repositories;
+﻿using CatalogoProduto.Domain.Core.Entities;
+using CatalogoProduto.Domain.Core.Interfaces;
 
 namespace CatalogoProduto.Infra.Repositories
 {

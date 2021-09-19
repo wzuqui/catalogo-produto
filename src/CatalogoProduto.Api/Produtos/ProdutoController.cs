@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using CatalogoProduto.Domain.Entities;
-using CatalogoProduto.Domain.Services;
+using CatalogoProduto.Domain.Core.Entities;
+using CatalogoProduto.Domain.Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,7 +33,7 @@ namespace CatalogoProduto.Api.Produtos
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post([FromBody] ProdutoAdicionarModel pModel)
+        public async Task<IActionResult> Post([FromBody] ProdutoModel pModel)
         {
             var xItem = await _service.AdicionarAsync(_mapper.Map<Produto>(pModel));
             var xRetorno = CreatedAtAction(nameof(Get), new { pId = xItem.Id }, _mapper.Map<ProdutoModel>(xItem));

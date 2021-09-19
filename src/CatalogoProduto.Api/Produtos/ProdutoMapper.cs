@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CatalogoProduto.Domain.Entities;
+using CatalogoProduto.Domain.Core.Entities;
 
 namespace CatalogoProduto.Api.Produtos
 {
@@ -13,11 +13,6 @@ namespace CatalogoProduto.Api.Produtos
                 .ForMember(p => p.Nome, p => p.MapFrom(pModel => pModel.Nome))
                 .ForMember(p => p.Valor, p => p.MapFrom(pModel => pModel.Valor))
                 .ReverseMap()
-                ;
-
-            CreateMap<ProdutoAdicionarModel, Produto>()
-                .ForMember(p => p.Nome, p => p.MapFrom(pModel => pModel.Nome))
-                .ForMember(p => p.Valor, p => p.MapFrom(pModel => pModel.Valor))
                 ;
         }
     }
