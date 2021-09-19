@@ -3,14 +3,16 @@ using CatalogoProduto.Infra;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CatalogoProduto.Api.Infrastructure.Migrations
 {
     [DbContext(typeof(CatalogoProdutoContext))]
-    partial class CatalogoProdutoContextModelSnapshot : ModelSnapshot
+    [Migration("20210919183753_Atualizando")]
+    partial class Atualizando
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
