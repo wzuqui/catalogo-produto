@@ -13,8 +13,7 @@
 ## Instalar
 
 ```sh
-dotnet tool restore
-yarn install
+./setup.ps1
 ```
 
 ## Uso
