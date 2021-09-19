@@ -1,8 +1,6 @@
 ﻿using System.Threading.Tasks;
-using CatalogoProduto.Domain.Entities;
-using CatalogoProduto.Domain.Repositories;
 
-namespace CatalogoProduto.Domain.Services
+namespace CatalogoProduto.Domain.Produto
 {
     public class ProdutoService : IProdutoService
     {

@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
-using CatalogoProduto.Domain.Entities;
 
-namespace CatalogoProduto.Domain.Services
+namespace CatalogoProduto.Domain.Produto
 {
     public interface IProdutoService
     {

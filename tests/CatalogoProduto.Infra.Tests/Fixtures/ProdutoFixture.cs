@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Bogus;
-using CatalogoProduto.Domain.Entities;
+using CatalogoProduto.Domain.Core.Entities;
 
 namespace CatalogoProduto.Infra.Tests.Fixtures
 {

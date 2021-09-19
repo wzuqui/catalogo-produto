@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace CatalogoProduto.Api.Extensions
@@ -10,7 +10,7 @@ namespace CatalogoProduto.Api.Extensions
     [ExcludeFromCodeCoverage]
     public static class WebHostExtension
     {
-        public static IWebHost MigrarDbContext<TContext>(this IWebHost pHost
+        public static IHost MigrarDbContext<TContext>(this IHost pHost
             , Action<TContext, IServiceProvider> pSeeder) where TContext : DbContext
         {
             using var xScope = pHost.Services.CreateScope();

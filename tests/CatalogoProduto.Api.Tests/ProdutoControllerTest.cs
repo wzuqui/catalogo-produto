@@ -1,7 +1,10 @@
-﻿using System.Net.Http.Json;
+﻿using System.Net;
+using System.Net.Http.Json;
 using CatalogoProduto.Api.Tests.Fixtures;
 using CatalogoProduto.Api.Tests.Setup;
+using CatalogoProduto.Domain.Core.Entities;
 using FluentAssertions;
+using Microsoft.AspNetCore.Http;
 using Xunit;
 
 namespace CatalogoProduto.Api.Tests
@@ -21,13 +24,31 @@ namespace CatalogoProduto.Api.Tests
         {
             // arrange
             var xHttpClient = CriarHttpClient();
-            var xModel = ProdutoModelFixture.CriaProdutoAdicionarModel();
+            var xModel = ProdutoModelFixture.CriaProdutoModelValido();
 
             // act
             var xResponse = await xHttpClient.PostAsJsonAsync("/produtos", xModel);
 
             // assert
             xResponse.EnsureSuccessStatusCode();
+            xResponse.Content.Headers.ContentType?.ToString().Should().Be("application/json; charset=utf-8");
+        }
+
+        [Fact(DisplayName = "DADO um produto inválido" +
+                            " QUANDO executado post" +
+                            " ENTÃO deve retornar" + nameof(StatusCodes.Status400BadRequest))]
+        public async void DADO_produto_invalido_QUANDO_executado_post_ENTAO_deve_retornar_400()
+        {
+            // arrange
+            var xHttpClient = CriarHttpClient();
+            var xModel = ProdutoModelFixture.CriaProdutoModelInvalido();
+
+            // act
+            var xResponse = await xHttpClient.PostAsJsonAsync("/produtos", xModel);
+
+            // assert
+            xModel.Nome.Length.Should().BeGreaterThan(Produto.NOME_TAMANHO_MAXIMO);
+            xResponse.StatusCode.Should().Be(HttpStatusCode.BadRequest);
             xResponse.Content.Headers.ContentType?.ToString().Should().Be("application/json; charset=utf-8");
         }
     }
