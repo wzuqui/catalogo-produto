@@ -652,3 +652,4 @@ fabric.properties
 
 ## custom
 .history/
+db/database/

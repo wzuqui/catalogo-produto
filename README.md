@@ -20,7 +20,8 @@ yarn install
 ## Uso
 
 ```sh
-dotnet run -p .\src\CatalogoProduto.Api\
+docker-compose -f ./db/docker-compose.yaml up -d
+dotnet run -p ./src/CatalogoProduto.Api/
 ```
 
 ## Executar testes
