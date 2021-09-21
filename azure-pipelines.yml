@@ -31,6 +31,7 @@ stages:
               targetdir: '$(Pipeline.Workspace)/coverlet'
               reporttypes: 'Cobertura'
               verbosity: 'Verbose'
+              filefilters: '-Excluded **/Migrations/*.cs'
           - task: PublishCodeCoverageResults@1
             displayName: CodeCoverage
             inputs:
