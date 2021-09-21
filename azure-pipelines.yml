@@ -24,15 +24,15 @@ stages:
               command: 'test'
               arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
               publishTestResults: true
-          - task: DotNetCoreCLI@2
-            displayName: Execução dos Testes de Unidade
+          - task: Palmmedia.reportgenerator.reportgenerator-build-release-task.reportgenerator@4
+            displayName: Merge
             inputs:
-              command: 'test'
-              projects: '$(pathToTestProject)'
-              arguments: '--configuration $(buildConfiguration) --collect "XPlat Code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
-              publishTestResults: true
+              reports: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+              targetdir: '$(Pipeline.Workspace)/coverlet'
+              reporttypes: 'Cobertura'
+              verbosity: 'Verbose'
           - task: PublishCodeCoverageResults@1
             displayName: CodeCoverage
             inputs:
-              codeCoverageTool: 'Cobertura'
-              summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+              codeCoverageTool: Cobertura
+              summaryFileLocation: '$(Pipeline.Workspace)/coverlet/Cobertura.xml'
