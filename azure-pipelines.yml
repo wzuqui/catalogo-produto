@@ -1,23 +1,31 @@
 trigger:
   - master
 
+variables:
+  vmImageName: ubuntu-latest
+
 pool:
-  vmImage: ubuntu-latest
+  vmImage: $(vmImageName)
 
 stages:
   - stage: Build
     jobs:
       - job: Build
+        pool:
+          vmImage: $(vmImageName)
         steps:
           - task: DotNetCoreCLI@2
+            displayName: Build
             inputs:
               command: "build"
           - task: DotNetCoreCLI@2
+            displayName: Tests
             inputs:
               command: 'test'
               arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
               publishTestResults: true
           - task: PublishCodeCoverageResults@1
+            displayName: CodeCoverage
             inputs:
               codeCoverageTool: 'Cobertura'
               summaryFileLocation: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
