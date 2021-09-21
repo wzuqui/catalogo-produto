@@ -24,6 +24,13 @@ stages:
               command: 'test'
               arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
               publishTestResults: true
+          - task: DotNetCoreCLI@2
+            displayName: Execução dos Testes de Unidade
+            inputs:
+              command: 'test'
+              projects: '$(pathToTestProject)'
+              arguments: '--configuration $(buildConfiguration) --collect "XPlat Code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
+              publishTestResults: true
           - task: PublishCodeCoverageResults@1
             displayName: CodeCoverage
             inputs:
