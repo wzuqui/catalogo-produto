@@ -12,6 +12,6 @@ stages:
           - task: DotNetCoreCLI@2
             inputs:
               command: "build"
-          - task: BatchScript@1
+          - task: DotNetCoreCLI@2
             inputs:
-              filename: "coverage.bat"
+              command: 'test'
