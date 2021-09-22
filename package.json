@@ -1,6 +1,5 @@
 {
   "name": "produto",
-  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "semantic-release": "semantic-release"
