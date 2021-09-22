@@ -6,6 +6,7 @@ variables:
 
 pool:
   vmImage: $(vmImageName)
+  buildConfiguration: Release
 
 stages:
   - stage: Buil
