@@ -51,6 +51,7 @@ stages:
             deploy:
               steps:
                 - checkout: self
+                - script: dir $(Build.SourcesDirectory)
                 - script: >
                     npm install &&
                     npx -p semantic-release
