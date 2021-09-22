@@ -1,17 +1,39 @@
 trigger:
   - master
 
+variables:
+  vmImageName: ubuntu-latest
+
 pool:
-  vmImage: ubuntu-latest
+  vmImage: $(vmImageName)
 
 stages:
   - stage: Build
     jobs:
       - job: Build
+        pool:
+          vmImage: $(vmImageName)
         steps:
           - task: DotNetCoreCLI@2
+            displayName: Build
             inputs:
               command: "build"
-          - task: BatchScript@1
+          - task: DotNetCoreCLI@2
+            displayName: Tests
             inputs:
-              filename: "coverage.bat"
+              command: 'test'
+              arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
+              publishTestResults: true
+          - task: Palmmedia.reportgenerator.reportgenerator-build-release-task.reportgenerator@4
+            displayName: Merge
+            inputs:
+              reports: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
+              targetdir: '$(Pipeline.Workspace)/coverlet'
+              reporttypes: 'Cobertura'
+              verbosity: 'Verbose'
+              filefilters: '-**/Migrations/*.cs'
+          - task: PublishCodeCoverageResults@1
+            displayName: CodeCoverage
+            inputs:
+              codeCoverageTool: Cobertura
+              summaryFileLocation: '$(Pipeline.Workspace)/coverlet/Cobertura.xml'
