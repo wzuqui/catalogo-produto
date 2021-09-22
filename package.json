@@ -1,8 +1,6 @@
 {
   "name": "produto",
   "version": "1.0.0",
-  "repository": "https://willianluiszuqui@dev.azure.com/willianluiszuqui/Produto/_git/Produto",
-  "author": "Willian Luis Zuqui <willianluiszuqui@gmail.com>",
   "license": "MIT",
   "scripts": {
     "semantic-release": "semantic-release"
