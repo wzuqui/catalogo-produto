@@ -3,10 +3,10 @@ trigger:
 
 variables:
   vmImageName: ubuntu-latest
+  buildConfiguration: Release
 
 pool:
   vmImage: $(vmImageName)
-  buildConfiguration: Release
 
 stages:
   - stage: Buil
