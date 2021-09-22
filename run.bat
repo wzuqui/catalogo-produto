@@ -1,1 +1,0 @@
-dotnet run -p ./src/CatalogoProduto.Api/
