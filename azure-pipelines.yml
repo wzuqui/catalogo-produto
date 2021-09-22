@@ -49,9 +49,10 @@ stages:
         strategy:
           runOnce:
             deploy:
+              pool:
+                vmImage: "vs2017-win2016"
               steps:
                 - script: >
-                    npm install &&
                     npx -p semantic-release
                     -p @semantic-release/git
                     -p semantic-release-ado
