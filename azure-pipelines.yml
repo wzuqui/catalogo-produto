@@ -22,22 +22,22 @@ stages:
           - task: DotNetCoreCLI@2
             displayName: Tests
             inputs:
-              command: 'test'
+              command: "test"
               arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
               publishTestResults: true
           - task: Palmmedia.reportgenerator.reportgenerator-build-release-task.reportgenerator@4
             displayName: Merge
             inputs:
-              reports: '$(Agent.TempDirectory)/**/coverage.cobertura.xml'
-              targetdir: '$(Pipeline.Workspace)/coverlet'
-              reporttypes: 'Cobertura'
-              verbosity: 'Verbose'
-              filefilters: '-**/Migrations/*.cs'
+              reports: "$(Agent.TempDirectory)/**/coverage.cobertura.xml"
+              targetdir: "$(Pipeline.Workspace)/coverlet"
+              reporttypes: "Cobertura"
+              verbosity: "Verbose"
+              filefilters: "-**/Migrations/*.cs"
           - task: PublishCodeCoverageResults@1
             displayName: CodeCoverage
             inputs:
               codeCoverageTool: Cobertura
-              summaryFileLocation: '$(Pipeline.Workspace)/coverlet/Cobertura.xml'
+              summaryFileLocation: "$(Pipeline.Workspace)/coverlet/Cobertura.xml"
   - stage: Release
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
     jobs:
@@ -52,10 +52,7 @@ stages:
               steps:
                 - script: |
                     npm install &&
-                    npx -p semantic-release
-                    -p @semantic-release/git
-                    -p semantic-release-ado
-                    semantic-release
+                    npm start semantic-release
                   env: { GH_TOKEN: $(GitHubToken) }
                   displayName: "Semantic release"
                 - script: echo $(nextRelease)
