@@ -44,7 +44,7 @@ stages:
       - deployment:
         displayName: Release
         pool:
-          vmImage: 'vs2017-win2016'
+          vmImage: $(vmImageName)
         environment: Release
         strategy:
           runOnce:
