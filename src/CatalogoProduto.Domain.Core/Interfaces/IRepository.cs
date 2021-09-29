@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using CatalogoProduto.Domain.Core.Entities;
@@ -13,7 +13,7 @@ namespace CatalogoProduto.Domain.Core.Interfaces
         Task<TEntity> AdicionarAsync(TEntity pItem);
         Task<TEntity> AtualizarAsync(TEntity pItem);
         Task<TEntity> ExcluirAsync(TKey pId);
-        IQueryable<TEntity> ListarAsync(Expression<Func<TEntity, bool>> pExpression);
+        Task<List<TEntity>> ListarAsync(Expression<Func<TEntity, bool>> pExpression = null);
         Task<TEntity> ObterAsync(TKey pId);
         Task<int> SalvarAsync();
     }
