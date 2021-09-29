@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -51,9 +52,13 @@ namespace CatalogoProduto.Infra.Repositories
             return xItem;
         }
 
-        public IQueryable<TEntity> ListarAsync(Expression<Func<TEntity, bool>> pExpression)
+        public async Task<List<TEntity>> ListarAsync(Expression<Func<TEntity, bool>> pExpression)
         {
-            return _queryableReadOnly.Where(pExpression);
+            var xRetorno = pExpression == null
+                ? _queryableReadOnly.ToListAsync()
+                : _queryableReadOnly.Where(pExpression).ToListAsync();
+
+            return await xRetorno;
         }
 
         public async Task<TEntity> ObterAsync(TKey pId)

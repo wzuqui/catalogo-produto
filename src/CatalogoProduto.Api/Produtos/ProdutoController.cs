@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using CatalogoProduto.Domain.Core.Entities;
@@ -28,6 +29,15 @@ namespace CatalogoProduto.Api.Produtos
         public Task<ActionResult<ProdutoModel>> Get(int pId)
         {
             throw new NotImplementedException();
+        }
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<ProdutoModel>>> Get()
+        {
+            var xLista = await _service.ListarAsync();
+            var xRetorno = _mapper.Map<List<ProdutoModel>>(xLista);
+            return Ok(xRetorno);
         }
 
         [HttpPost]

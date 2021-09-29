@@ -14,6 +14,12 @@ namespace CatalogoProduto.Api.Produtos
                 .ForMember(p => p.Valor, p => p.MapFrom(pModel => pModel.Valor))
                 .ReverseMap()
                 ;
+
+            CreateMap<Produto, ProdutoModel>()
+                .ForMember(p => p.Id, p => p.MapFrom(pS => pS.Id))
+                .ForMember(p => p.Nome, p => p.MapFrom(pS => pS.Nome))
+                .ForMember(p => p.Valor, p => p.MapFrom(pS => pS.Valor))
+                ;
         }
     }
 }
