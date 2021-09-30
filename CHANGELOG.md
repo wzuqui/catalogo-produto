@@ -1,3 +1,10 @@
+# [1.1.0](https://dev.azure.com/willianluiszuqui/Produto/_git/Produto/compare/v1.0.0...v1.1.0) (2021-09-29)
+
+
+### Features
+
+* **listar:** retorna uma lista de produtos previamente cadastrados ([3b4ec6f](https://dev.azure.com/willianluiszuqui/Produto/_git/Produto/commit/3b4ec6f51260654f2eda5c224dbf12bf3a1f848d)), closes [#71](https://dev.azure.com/willianluiszuqui/Produto/_git/Produto/issues/71)
+
 # 1.0.0 (2021-09-22)
 
 
