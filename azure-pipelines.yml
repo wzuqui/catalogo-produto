@@ -63,3 +63,14 @@ stages:
                   displayName: "Semantic release"
                 - script: echo $(nextRelease)
                   displayName: "Show next version"
+                - task: Docker@2
+                  inputs:
+                    containerRegistry: "docker-zuqui"
+                    repository: "produto/api"
+                    command: "buildAndPush"
+                    Dockerfile: "**/Dockerfile"
+                    buildContext: $(Build.SourcesDirectory)
+                    tags: |
+                      latest
+                      $(nextRelease)
+                      $(Build.BuildId)
