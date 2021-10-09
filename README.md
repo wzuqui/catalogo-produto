@@ -31,6 +31,12 @@ dotnet run -p ./src/CatalogoProduto.Api/
 dotnet test
 ```
 
+## Build Docker
+
+```sh
+docker build --pull --rm -f "src\CatalogoProduto.Api\Dockerfile" -t produto:latest .
+```
+
 ## Autor
 
 👤 **Willian Luis Zuqui <willianluiszuqui@gmail.com>**

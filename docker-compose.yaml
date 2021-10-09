@@ -1,0 +1,22 @@
+version: "3.3"
+services:
+  catalogo_produto_api:
+    image: catalogo_produto_api
+    build:
+      context: .
+      dockerfile: ./src/CatalogoProduto.Api/Dockerfile
+    ports:
+      - 5000:80
+    environment:
+      - ConnectionString=Server=catalogo_produto_sqlserver;Initial Catalog=CatalogoProduto;Persist Security Info=False;User ID=sa;Password=yourStrong(!)Password;
+  catalogo_produto_sqlserver:
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=yourStrong(!)Password
+    ports:
+      - "1433:1433"
+    image: mcr.microsoft.com/mssql/server:2019-CU12-ubuntu-20.04
+    volumes:
+      - ./db/database/data:/var/opt/mssql/data
+      - ./db/database/log:/var/opt/mssql/log
+      - ./db/database/secrets:/var/opt/mssql/secrets
